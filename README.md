@@ -1,2 +1,2 @@
 # DigitReaderNN
-Simple Neural Network to Identify a Handwritten Digit
+This is an educational project based on using a Neural Network to solve a simple problem. In this case I am using a Neural Network to identify a handwritten digit from 0 to 9. The NN is trained entirely on the MNIST dataset and is written in C++. A more detailed analysis of the Neural Network and on the use of the program is written on the Presentation document in the repository. Feel free to fork the project or submit pull requests to add improvements or optimizations. 
