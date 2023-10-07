@@ -3,6 +3,10 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Neuron.h"
+
+// The initialize.cpp file is to set the weights equal to random numbers
+// This program utillizes 3 layers, 1000-500-10, it uses the ReLu activation function and softmax at the output layer
 
 using namespace std;
 string fileAddress = "MNIST/train.csv";
@@ -25,28 +29,13 @@ string getLine(string fileAddress, int i)
     return test;
 }
 
-void getTrainingData(int &Label, int *Results, int Row)
+void processLine(int &pixelValues, int Line)
 {
-    string temp = getLine(fileAddress, 1);
 }
 
 int main()
 {
-    /*
-        int Results[784];
-        int Label;
-        getTrainingData(Label, Results,1);
-        cout << Label << "\n";
-        int i;
-        for (i = 0; i <= 783; i++)
-        {
-            cout << Results[i];
-        }
-        */
-    string temp = getLine(fileAddress, 1);
-    // cout << temp;
-    char a = 's';
-    char b = 't';
-    auto c = a + b;
-    cout << c;
+    int trainingData[784];
+    Neuron neuron;
+    double LearningRate = 0.09;
 }
