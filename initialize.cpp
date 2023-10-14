@@ -19,10 +19,11 @@ double HeInit(int numberOfInputs)
 
 void initializeWeights(string fileAddress, int Width, int Length)
 {
+   
 }
 
 int main()
 {
 
-    initializeWeights("Weights.csv", 1, 1);
+    cout << "This works!";
 }
