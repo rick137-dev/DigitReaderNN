@@ -10,6 +10,15 @@
 
 using namespace std;
 string fileAddress = "MNIST/train.csv";
+double divisor = 255;
+
+void normalize(double *array)
+{
+    for (int i = 0; i <= sizeof(*array); i++)
+    {
+        array[i] = array[i] / (double)255;
+    }
+}
 
 string getLine(string fileAddress, int i)
 {
@@ -33,7 +42,10 @@ void processLine(int &pixelValues, int Line)
 {
 }
 
+int testLine(int i)
+{
+}
+
 int main()
 {
-    cout << getLine(fileAddress, 3);
 }
