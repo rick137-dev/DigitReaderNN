@@ -25,4 +25,7 @@ public:
     static double D_activationReLU(double x)
     {
     }
+    static double activationSoftMax(int i, double array[10])
+    {
+    }
 };

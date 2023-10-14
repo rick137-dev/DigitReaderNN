@@ -1,7 +1,6 @@
 
 #include <bits/stdc++.h>
 #include "Neuron.h"
-#include "cuda_runtime.h"
 
 Neuron::Neuron(string weightsData, int dataPosition)
 {
@@ -31,4 +30,14 @@ double Neuron::D_activationReLU(double x)
     {
         return 1;
     }
+}
+
+double Neuron::activationSoftMax(int i, double array[10])
+{
+    double sum = 0;
+    for (int x = 0; x <= 9; x++)
+    {
+        sum = sum + exp(array[x]);
+    }
+    return (exp(array[i]) / sum);
 }
