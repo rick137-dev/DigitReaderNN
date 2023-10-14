@@ -1,6 +1,7 @@
 
 #include <bits/stdc++.h>
 #include "Neuron.h"
+#include "cuda_runtime.h"
 
 Neuron::Neuron(string weightsData, int dataPosition)
 {

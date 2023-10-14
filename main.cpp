@@ -6,7 +6,7 @@
 #include "Neuron.h"
 
 // The initialize.cpp file is to set the weights equal to random numbers
-// This program utillizes 3 layers, 1000-500-10, it uses the ReLu activation function and softmax at the output layer
+// This program utillizes 3 layers, 500-100-10, it uses the ReLu activation function and softmax at the output layer
 
 using namespace std;
 string fileAddress = "MNIST/train.csv";
