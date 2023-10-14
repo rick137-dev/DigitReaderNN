@@ -35,7 +35,5 @@ void processLine(int &pixelValues, int Line)
 
 int main()
 {
-    int trainingData[784];
-    Neuron neuron;
-    double LearningRate = 0.09;
+    cout << getLine(fileAddress, 3);
 }
