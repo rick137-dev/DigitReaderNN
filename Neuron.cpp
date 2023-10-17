@@ -2,12 +2,6 @@
 #include <bits/stdc++.h>
 #include "Neuron.h"
 
-Neuron::Neuron(string weightsData, int dataPosition)
-{
-    this->weightsData = weightsData;
-    this->dataPosition = dataPosition;
-}
-
 double Neuron::activationReLU(double x)
 {
     if (x <= 0)
@@ -40,4 +34,18 @@ double Neuron::activationSoftMax(int i, double array[10])
         sum = sum + exp(array[x]);
     }
     return (exp(array[i]) / sum);
+}
+
+void Neuron::normalize(double *array)
+{
+    for (int i = 0; i <= sizeof(*array); i++)
+    {
+        array[i] = array[i] / (double)255;
+    }
+}
+
+Neuron::Neuron(int layer, int specificNeuron)
+{
+    this->layer = layer;
+    this->specificNeuron = specificNeuron;
 }
