@@ -15,41 +15,69 @@ void initializeWeights(string fileAddress = "Weights.csv")
 {
     double standardDeviation = sqrt(2 / (double)784);
     std::default_random_engine generator;
-    std::normal_distribution<double> distribution(0.0, standardDeviation);
+    std::normal_distribution<double> distribution1(0.0, standardDeviation);
 
     ofstream file;
     file.open(fileAddress);
-    int i, j;
-    for (i = 0; i <= 783; i++)
-    {
-        for (j = 0; j <= 499; j++)
-        {
-            file << distribution(generator)
-                 << ",";
-        }
-        file << "\n";
-    }
 
-    standardDeviation = sqrt(2 / (double)500);
-    std::normal_distribution<double> distribution1(0.0, standardDeviation);
-    for (i = 0; i <= 499; i++)
+    // FIRST LAYER
+    // 784*500 weights for first layer
+    int i, j;
+    for (i = 0; i < 500; i++)
     {
-        for (j = 0; j <= 99; j++)
+        for (j = 0; j < 784; j++)
         {
             file << distribution1(generator)
                  << ",";
         }
         file << "\n";
     }
-
-    for (i = 0; i <= 99; i++)
+    // 500 biases for first layer
+    for (i = 0; i < 500; i++)
     {
-        for (j = 0; j <= 9; j++)
+        file << distribution1(generator)
+             << ",";
+    }
+    file << "\n";
+    // SECOND LAYER
+    standardDeviation = sqrt(2 / (double)500);
+    std::normal_distribution<double> distribution2(0.0, standardDeviation);
+    // 500*100 weights for second layer
+    for (i = 0; i < 100; i++)
+    {
+        for (j = 0; j < 500; j++)
         {
-            file << "1"
+            file << distribution2(generator)
                  << ",";
         }
         file << "\n";
+    }
+    // 100 biases for second layer
+    for (j = 0; j < 100; j++)
+    {
+        file << distribution2(generator)
+             << ",";
+    }
+    file << "\n";
+
+    // SOFTMAX LAYER
+    standardDeviation = sqrt(2 / (double)100);
+    std::normal_distribution<double> distribution3(0.0, standardDeviation);
+    // 100*10 weights for softmax layer
+    for (i = 0; i < 10; i++)
+    {
+        for (j = 0; j < 100; j++)
+        {
+            file << distribution3(generator)
+                 << ",";
+        }
+        file << "\n";
+    }
+    // 10 biases for softmax layer
+    for (i = 0; i < 10; i++)
+    {
+        file << distribution3(generator)
+             << ",";
     }
 
     file.close();
