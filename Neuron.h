@@ -27,9 +27,14 @@ public:
     void normalize(double *array)
     {
     }
-    int testInput() {}
+    double calculateNeuronActivation(vector<double> input, int Layer, int Neuron) {}
 
-    void backPropagate()
+    vector<double> getFirstLayerOutput(vector<double> normalized_input)
     {
     }
+    vector<double> getSecondLayerOutput(vector<double> input) {}
+
+    int getThirdLayerOutput(vector<int> input) {}
+
+    double calculateLastLayerActivations() {}
 };
