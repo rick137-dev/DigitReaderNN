@@ -21,7 +21,7 @@ public:
     static double D_activationReLU(double x)
     {
     }
-    static double activationSoftMax(int i, double array[10])
+    static double activationSoftMax(int i, vector<double> input)
     {
     }
     void normalize(double *array)
@@ -34,7 +34,7 @@ public:
     }
     vector<double> getSecondLayerOutput(vector<double> input) {}
 
-    int getThirdLayerOutput(vector<int> input) {}
+    int getThirdLayerOutput(vector<double> input) {}
 
-    double calculateLastLayerActivations() {}
+    double calculateLastLayerActivations(vector<double> input, int Layer, int Neuron) {}
 };
