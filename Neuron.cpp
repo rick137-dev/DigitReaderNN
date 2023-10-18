@@ -1,7 +1,7 @@
 
 #include <bits/stdc++.h>
 #include "Neuron.h"
-#include "stringProcessing.h"
+#include "stringProcessing.cpp"
 
 double Neuron::activationReLU(double x)
 {
@@ -111,9 +111,10 @@ int Neuron::getThirdLayerOutput(vector<double> secondLayerActivations)
     }
 
     double max = -2;
-    int current;
+    int current = 1;
     for (int i = 1; i <= 10; i++)
     {
+
         if (finalOutput[i] > max)
         {
             max = finalOutput[i];
@@ -121,4 +122,17 @@ int Neuron::getThirdLayerOutput(vector<double> secondLayerActivations)
         }
     }
     return current;
+}
+
+int Neuron::getNeuralNetworkOutput(int line)
+{
+    if (line > 0)
+    {
+        vector<double> normal_input = getNormalizedInput(line);
+        return getThirdLayerOutput(getSecondLayerOutput(getFirstLayerOutput(normal_input)));
+    }
+    else
+    {
+        cout << "Non Positive Line input!";
+    }
 }
