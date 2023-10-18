@@ -37,4 +37,10 @@ public:
     int getThirdLayerOutput(vector<double> input) {}
 
     double calculateLastLayerActivations(vector<double> input, int Layer, int Neuron) {}
+
+    int getNeuralNetworkOutput(int line) {}
+
+    void backpropagate(int line)
+    {
+    }
 };

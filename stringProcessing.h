@@ -4,7 +4,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "Neuron.h"
 
 using namespace std;
 
@@ -32,5 +31,11 @@ vector<double> getBiases(int Layer)
 {
 }
 double getBias(int Layer, int Neuron)
+{
+}
+int getLabel(int line)
+{
+}
+void testfunc()
 {
 }

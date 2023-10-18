@@ -4,7 +4,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "Neuron.h"
 
 using namespace std;
 
@@ -71,15 +70,25 @@ string getWeightsGivenLayerNeuron(int Layer, int Neuron)
 vector<int> processInputString(string input)
 {
     vector<int> numbers;
-
     stringstream ss(input);
+    string substr;
+    getline(ss, substr, ',');
+
     while (ss.good())
     {
-        string substr;
         getline(ss, substr, ',');
         numbers.push_back(stoi(substr));
     }
     return numbers;
+}
+
+int getLabel(int line)
+{
+    string input = getSpecificLineDataset(line);
+    stringstream ss(input);
+    string substr;
+    getline(ss, substr, ',');
+    return stoi(substr);
 }
 
 // same inefficiency
@@ -100,11 +109,11 @@ vector<double> processWeightString(string input)
 // same inefficiency here
 vector<double> getNormalizedInput(int line)
 {
-    vector<double> weightsI = processWeightString(getSpecificLineDataset(line));
+    vector<int> input = processInputString(getSpecificLineDataset(line));
     vector<double> final;
-    for (int i = 0; i < weightsI.size(); i++)
+    for (int i = 0; i < input.size(); i++)
     {
-        final.push_back((weightsI[i]) / (double)255);
+        final.push_back((input[i]) / (double)255);
     }
     return final;
 }
@@ -130,6 +139,7 @@ double getBias(int Layer, int Neuron)
     return getBiases(Layer)[Neuron - 1];
 }
 
-int main()
+void testfunc()
 {
+    cout << "yes";
 }
