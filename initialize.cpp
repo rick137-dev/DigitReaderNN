@@ -25,19 +25,21 @@ void initializeWeights(string fileAddress = "Weights.csv")
     int i, j;
     for (i = 0; i < 500; i++)
     {
-        for (j = 0; j < 784; j++)
+        for (j = 0; j < 783; j++)
         {
             file << distribution1(generator)
                  << ",";
         }
+        file << distribution1(generator);
         file << "\n";
     }
     // 500 biases for first layer
-    for (i = 0; i < 500; i++)
+    for (i = 0; i < 499; i++)
     {
         file << distribution1(generator)
              << ",";
     }
+    file << distribution1(generator);
     file << "\n";
     // SECOND LAYER
     standardDeviation = sqrt(2 / (double)500);
@@ -45,19 +47,21 @@ void initializeWeights(string fileAddress = "Weights.csv")
     // 500*100 weights for second layer
     for (i = 0; i < 100; i++)
     {
-        for (j = 0; j < 500; j++)
+        for (j = 0; j < 499; j++)
         {
             file << distribution2(generator)
                  << ",";
         }
+        file << distribution2(generator);
         file << "\n";
     }
     // 100 biases for second layer
-    for (j = 0; j < 100; j++)
+    for (j = 0; j < 99; j++)
     {
         file << distribution2(generator)
              << ",";
     }
+    file << distribution2(generator);
     file << "\n";
 
     // SOFTMAX LAYER
@@ -66,19 +70,21 @@ void initializeWeights(string fileAddress = "Weights.csv")
     // 100*10 weights for softmax layer
     for (i = 0; i < 10; i++)
     {
-        for (j = 0; j < 100; j++)
+        for (j = 0; j < 99; j++)
         {
             file << distribution3(generator)
                  << ",";
         }
+        file << distribution3(generator);
         file << "\n";
     }
     // 10 biases for softmax layer
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 9; i++)
     {
         file << distribution3(generator)
              << ",";
     }
+    file << distribution3(generator);
 
     file.close();
 }
