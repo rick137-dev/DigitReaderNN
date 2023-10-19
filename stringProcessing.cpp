@@ -138,8 +138,3 @@ double getBias(int Layer, int Neuron)
 {
     return getBiases(Layer)[Neuron - 1];
 }
-
-void testfunc()
-{
-    cout << "yes";
-}
