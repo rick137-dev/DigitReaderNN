@@ -72,6 +72,7 @@ vector<int> processInputString(string input)
     vector<int> numbers;
     stringstream ss(input);
     string substr;
+    // first char is label, not part of input
     getline(ss, substr, ',');
 
     while (ss.good())
@@ -80,6 +81,14 @@ vector<int> processInputString(string input)
         numbers.push_back(stoi(substr));
     }
     return numbers;
+}
+
+int getLabel(string input)
+{
+    stringstream ss(input);
+    string substr;
+    getline(ss, substr, ',');
+    return stoi(substr);
 }
 
 int getLabel(int line)
