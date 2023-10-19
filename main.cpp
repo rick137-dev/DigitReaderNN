@@ -14,8 +14,10 @@ int main()
     Neuron neuron;
     vector<double> input = getNormalizedInput(1);
     vector<double> activations = neuron.getFirstLayerActivations(input);
-    for (int i = 0; i < 500; i++)
+    vector<double> secondAct = neuron.getSecondLayerActivations(activations);
+    vector<double> thirdSum = neuron.getThirdLayerSum(secondAct);
+    for (int i = 0; i < 10; i++)
     {
-        cout << activations[i] << endl;
+        cout << thirdSum[i] << endl;
     }
 }
