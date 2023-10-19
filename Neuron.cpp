@@ -149,6 +149,22 @@ public:
         {
             activations.push_back(activationSoftMax(i, thirdSums));
         }
-        return 1;
+
+        int current;
+        double max = 0;
+        for (i = 0; i < 10; i++)
+        {
+            if (activations[i] > max)
+            {
+                max = activations[i];
+                current = i;
+            }
+        }
+        return current;
+    }
+
+    int getNNOutput(int line)
+    {
+        return NeuralNetworkOutput(getThirdLayerSum(getSecondLayerActivations(getFirstLayerActivations(getNormalizedInput(line)))));
     }
 };
