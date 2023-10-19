@@ -46,7 +46,14 @@ public:
 
     double dotProduct(vector<double> input1, vector<double> input2)
     {
+
         int size = input1.size();
+        int size2 = input2.size();
+        if (size != size2)
+        {
+            cout << "ERROR WITH dotProduct!";
+            return -1;
+        }
         double total = 0;
         for (int i = 0; i < size; i++)
         {
@@ -57,5 +64,25 @@ public:
 
     vector<double> getFirstLayerActivations(vector<double> normalized_input)
     {
+        vector<double> activations;
+        vector<double> biases = getBiases(1);
+        vector<double> weights;
+        string between;
+
+        string fileAddress = "Weights.csv";
+
+        ifstream file;
+        file.open(fileAddress);
+
+        for (int i = 0; i < 500; i++)
+        {
+
+            getline(file, between);
+            weights = processWeightString(between);
+
+            activations.push_back(activationReLU(dotProduct(normalized_input, weights) + biases[i]));
+        }
+        file.close();
+        return activations;
     }
 };

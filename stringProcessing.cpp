@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string getSpecificLineDataset(int line)
+inline string getSpecificLineDataset(int line)
 {
     string fileAddress = "MNIST/train.csv";
     line++;
