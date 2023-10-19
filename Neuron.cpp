@@ -9,6 +9,7 @@ public:
     Neuron()
     {
     }
+    string fileAddress = "Weights.csv";
 
     double activationReLU(double x)
     {
@@ -69,8 +70,6 @@ public:
         vector<double> weights;
         string between;
 
-        string fileAddress = "Weights.csv";
-
         ifstream file;
         file.open(fileAddress);
 
@@ -84,5 +83,72 @@ public:
         }
         file.close();
         return activations;
+    }
+
+    vector<double> getSecondLayerActivations(vector<double> firstLayerActivations)
+    {
+        vector<double> secondActivations;
+        vector<double> biases = getBiases(2);
+        vector<double> weights;
+        string between;
+
+        ifstream file;
+        file.open(fileAddress);
+        // skip to line 502
+        for (int i = 0; i < 501; i++)
+        {
+            getline(file, between);
+        }
+
+        for (int i = 0; i < 100; i++)
+        {
+
+            getline(file, between);
+            weights = processWeightString(between);
+
+            secondActivations.push_back(activationReLU(dotProduct(firstLayerActivations, weights) + biases[i]));
+        }
+        file.close();
+        return secondActivations;
+    }
+
+    // calculates vector sums before softmax
+    vector<double> getThirdLayerSum(vector<double> secondActivations)
+    {
+
+        vector<double> thirdSums;
+        vector<double> biases = getBiases(3);
+        vector<double> weights;
+        string between;
+
+        ifstream file;
+        file.open(fileAddress);
+        // skip to line 502
+        for (int i = 0; i < 602; i++)
+        {
+            getline(file, between);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+
+            getline(file, between);
+            weights = processWeightString(between);
+
+            thirdSums.push_back(activationReLU(dotProduct(secondActivations, weights) + biases[i]));
+        }
+        file.close();
+        return thirdSums;
+    }
+
+    int NeuralNetworkOutput(vector<double> thirdSums)
+    {
+        vector<double> activations;
+        int i;
+        for (i = 0; i < 10; i++)
+        {
+            activations.push_back(activationSoftMax(i, thirdSums));
+        }
+        return 1;
     }
 };
