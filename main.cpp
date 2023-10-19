@@ -12,5 +12,5 @@ using namespace std;
 int main()
 {
     Neuron neuron;
-    cout << neuron.getNeuralNetworkOutput(1);
+    vector<double> test = getNormalizedInput(2);
 }
