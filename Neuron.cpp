@@ -44,89 +44,18 @@ public:
         return (exp(input[Neuron]) / sum);
     }
 
-       double calculateNeuronActivation(vector<double> normalized_input, int Layer, int Neuron)
+    double dotProduct(vector<double> input1, vector<double> input2)
     {
-        vector<double> weights = processWeightString(getWeightsGivenLayerNeuron(Layer, Neuron));
-        double bias = getBias(Layer, Neuron);
+        int size = input1.size();
         double total = 0;
-        for (int i = 0; i < weights.size(); i++)
+        for (int i = 0; i < size; i++)
         {
-            total = total + weights[i] * normalized_input[i];
+            total = total + input1[i] * input2[i];
         }
-        return activationReLU(total + bias);
+        return total;
     }
 
-    double calculateLastLayerActivations(vector<double> input, int Layer, int Neuron)
+    vector<double> getFirstLayerActivations(vector<double> normalized_input)
     {
-        vector<double> weights = processWeightString(getWeightsGivenLayerNeuron(Layer, Neuron));
-        double bias = getBias(Layer, Neuron);
-        double total = 0;
-        for (int i = 0; i < weights.size(); i++)
-        {
-            total = total + weights[i] * input[i];
-        }
-        return bias + total;
-    }
-
-    vector<double> getFirstLayerOutput(vector<double> normalized_input)
-    {
-
-        vector<double> activations;
-        for (int i = 1; i <= 500; i++)
-        {
-            activations.push_back(calculateNeuronActivation(normalized_input, 1, i));
-        }
-        return activations;
-    }
-
-    vector<double> getSecondLayerOutput(vector<double> firstLayerActivations)
-    {
-        vector<double> activations;
-        for (int i = 1; i <= 100; i++)
-        {
-            activations.push_back(calculateNeuronActivation(firstLayerActivations, 2, i));
-        }
-        return activations;
-    }
-
-    int getThirdLayerOutput(vector<double> secondLayerActivations)
-    {
-        vector<double> activations;
-        vector<double> finalOutput;
-        for (int i = 1; i <= 10; i++)
-        {
-            activations.push_back(calculateLastLayerActivations(secondLayerActivations, 3, i));
-        }
-
-        for (int i = 1; i <= 10; i++)
-        {
-            finalOutput.push_back(activationSoftMax(i, activations));
-        }
-
-        double max = -2;
-        int current = 1;
-        for (int i = 1; i <= 10; i++)
-        {
-
-            if (finalOutput[i] > max)
-            {
-                max = finalOutput[i];
-                current = i;
-            }
-        }
-        return current;
-    }
-
-    int getNeuralNetworkOutput(int line)
-    {
-        if (line > 0)
-        {
-            vector<double> normal_input = getNormalizedInput(line);
-            return getThirdLayerOutput(getSecondLayerOutput(getFirstLayerOutput(normal_input)));
-        }
-        else
-        {
-            cout << "Non Positive Line input!";
-        }
     }
 };

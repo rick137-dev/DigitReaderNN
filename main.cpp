@@ -11,6 +11,4 @@ using namespace std;
 
 int main()
 {
-    Neuron neuron;
-    vector<double> test = getNormalizedInput(2);
 }

@@ -133,8 +133,3 @@ vector<double> getBiases(int Layer)
         return processWeightString(getSpecificLineWeights(613));
     }
 }
-
-double getBias(int Layer, int Neuron)
-{
-    return getBiases(Layer)[Neuron - 1];
-}
