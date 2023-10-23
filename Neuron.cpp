@@ -160,6 +160,7 @@ public:
                 current = i;
             }
         }
+
         return current;
     }
 
@@ -168,15 +169,33 @@ public:
         return NeuralNetworkOutput(getThirdLayerSum(getSecondLayerActivations(getFirstLayerActivations(getNormalizedInput(line)))));
     }
 
-    int getErrorForBatch(int Batch)
+    vector<double> getCorrectActivationsVector(int line)
     {
-        int start = Batch * 1000;
-        int end = Batch + 1000;
-        double totalError;
-        for (int line = start + 1; line <= end; line++)
+        int Label = getLabel(line);
+        vector<double> results;
+        for (int i = 0; i < 10; i++)
         {
-            totalError = totalError + (getLabel(line) - getNNOutput(line)) * (getLabel(line) - getNNOutput(line));
+            results.push_back(0);
         }
-        return totalError / (double)1000;
+        results[Label] = 1;
+        return results;
+    }
+
+    vector<double> getErrorVector(int line)
+    {
+        vector<double> sums = getThirdLayerSum(getSecondLayerActivations(getFirstLayerActivations(getNormalizedInput(line))));
+        vector<double> activations;
+        for (int i = 0; i < 10; i++)
+        {
+            activations.push_back(activationSoftMax(i, sums));
+        }
+
+        vector<double> errors;
+        double error;
+        for (int i = 0; i < 10; i++)
+        {
+            error = (activations[i] - getCorrectActivationsVector(line)[i]) * (activations[i] - getCorrectActivationsVector(line)[i]) / (double)2;
+            errors.push_back(error);
+        }
     }
 };
