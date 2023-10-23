@@ -167,4 +167,16 @@ public:
     {
         return NeuralNetworkOutput(getThirdLayerSum(getSecondLayerActivations(getFirstLayerActivations(getNormalizedInput(line)))));
     }
+
+    int getErrorForBatch(int Batch)
+    {
+        int start = Batch * 1000;
+        int end = Batch + 1000;
+        double totalError;
+        for (int line = start + 1; line <= end; line++)
+        {
+            totalError = totalError + (getLabel(line) - getNNOutput(line)) * (getLabel(line) - getNNOutput(line));
+        }
+        return totalError / (double)1000;
+    }
 };
