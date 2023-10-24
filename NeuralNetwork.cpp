@@ -2,11 +2,11 @@
 #include <bits/stdc++.h>
 #include "stringProcessing.cpp"
 
-class Neuron
+class NeuralNetwork
 {
 
 public:
-    Neuron()
+    NeuralNetwork()
     {
     }
     string fileAddress = "Weights.csv";
