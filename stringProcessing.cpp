@@ -45,6 +45,49 @@ string getSpecificLineWeights(int line)
     return test;
 }
 
+vector<string> getSpecificLinesDataset(int startLine, int endLine)
+{
+    string fileAddress = "MNIST/train.csv";
+    if (startLine == 0)
+    {
+        startLine++;
+    }
+
+    vector<string> lines;
+    string test;
+    ifstream file;
+    file.open(fileAddress);
+    int x = 0;
+
+    while (x < startLine)
+    {
+
+        getline(file, test);
+
+        x++;
+    }
+
+    while (x <= endLine)
+    {
+        getline(file, test);
+        lines.push_back(test);
+        x++;
+    }
+
+    return lines;
+}
+
+vector<double> normalizeVector(vector<int> input)
+{
+    vector<double> output;
+    for (int x = 0; x < input.size(); x++)
+    {
+        output[x] = input[x] / 255;
+    }
+
+    return output;
+}
+
 string getWeightsGivenLayerNeuron(int Layer, int Neuron)
 {
 
