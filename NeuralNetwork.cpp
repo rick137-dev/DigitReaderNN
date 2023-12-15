@@ -198,4 +198,30 @@ public:
             errors.push_back(error);
         }
     }
+
+    // faster output calculation due to less memory interaction, still too slow for stochastic gradient descent
+    vector<int> getOutputForRange(int startLine, int endLine)
+    {
+        vector<int> outputs;
+        vector<string> lines = getSpecificLinesDataset(startLine, endLine);
+        vector<double> normalizedInput;
+
+        for (int i = 0; i < lines.size(); i++)
+        {
+            normalizedInput = getNormalizedInput(lines[i]);
+            outputs.push_back(NeuralNetworkOutput(getThirdLayerSum(getSecondLayerActivations(getFirstLayerActivations(normalizedInput)))));
+        }
+
+        return outputs;
+    }
+
+    // function for backpropagation, used for stochastic gradient descent
+    void backPropagate(int startLine, int endLine, double learningRate)
+    {
+    }
+
+    // divides the training set into batches then backpropagates through each one
+    void trainNeuralNetwork(int batchsize)
+    {
+    }
 };

@@ -14,7 +14,9 @@ using namespace std;
 int main()
 {
     NeuralNetwork n;
-    vector<string> lines = getSpecificLinesDataset(100, 500);
-
-    cout << n.getNNOutput(3);
+    vector<int> outputs = n.getOutputForRange(3, 50);
+    for (int i = 0; i < outputs.size(); i++)
+    {
+        cout << outputs[i] << endl;
+    }
 }
