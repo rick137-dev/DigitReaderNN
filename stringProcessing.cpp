@@ -170,6 +170,17 @@ vector<double> getNormalizedInput(int line)
     return final;
 }
 
+vector<double> getNormalizedInput(string input)
+{
+    vector<int> NumInput = processInputString(input);
+    vector<double> final;
+    for (int i = 0; i < NumInput.size(); i++)
+    {
+        final.push_back((NumInput[i]) / (double)255);
+    }
+    return final;
+}
+
 vector<double> getBiases(int Layer)
 {
     if (Layer == 1)
